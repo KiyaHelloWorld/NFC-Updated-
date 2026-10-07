@@ -122,9 +122,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
       </div>
       <div>
         <ul class="links">
-          <li><a href="#">LinkedIn <span id="p-li"></span></a></li>
-          <li><a href="#">Instagram <span id="p-ig"></span></a></li>
-          <li><a href="#">Facebook <span id="p-fb"></span></a></li>
+          <li><a href="#" id="a-li" target="_blank" rel="noopener noreferrer">LinkedIn <span id="p-li"></span></a></li>
+          <li><a href="#" id="a-ig" target="_blank" rel="noopener noreferrer">Instagram <span id="p-ig"></span></a></li>
+          <li><a href="#" id="a-fb" target="_blank" rel="noopener noreferrer">Facebook <span id="p-fb"></span></a></li>
           <li><a href="#">View CV <span>PDF</span></a></li>
           <li><a href="#" id="p-call">Call <span id="p-tel"></span></a></li>
         </ul>
@@ -169,6 +169,11 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
 var $=function(id){return document.getElementById(id)};
 var screens=['landing','profile','conn'];
 function today(){return new Date().toISOString().slice(0,10)}
+var LOGIN={
+  li:'https://www.linkedin.com/login',
+  ig:'https://www.instagram.com/accounts/login/',
+  fb:'https://www.facebook.com/login'
+};
 var SCHOOLS={
   DLSU:{short:'DLSU',emoji:'🏹',full:'De La Salle University, Manila'},
   UST:{short:'UST',emoji:'🐯',full:'University of Santo Tomas'},
@@ -179,7 +184,7 @@ var seed=function(){return {
   Bob:{name:'Bob Del Rosario',init:'BD',role:'BS Entrepreneurship',sc:'DLSU',bio:'\u201cInterested in Business, Tech and Food yupieee!\u201d',li:'linkedin.com/in/bobdelrosario',ig:'@SpongeBOB',fb:'facebook.com/BobPogi',tel:'+63 900 000 0000',connected:false,at:0,note:{where:'',when:'',extra:''}},
   Andi:{name:'Andi Lim',init:'AL',role:'Business Management',sc:'DLSU',bio:'\u201cLooking for people who like building businesses from scratch.\u201d',li:'linkedin.com/in/andilim',ig:'@GabiNgLagim',fb:'facebook.com/andilim',tel:'+63 900 000 0001',connected:true,at:1,note:{where:'NexTap pitch day',when:today(),extra:'Interested in marketing and branding.'}},
   Analin:{name:'Analin Panlipunan',init:'AP',role:'Architecture',sc:'UST',bio:'\u201cDesigning spaces that bring people together.\u201d',li:'linkedin.com/in/analin-panlipunan',ig:'@AralNaYa',fb:'facebook.com/analin.panlipunan',tel:'+63 900 000 0005',connected:true,at:5,note:{where:'Design expo',when:today(),extra:'Wants to collaborate on a pop-up booth.'}},
-  Sir:{name:'Sir Aulo',init:'SA',role:'Communication',sc:'ATENEO',bio:'\u201cStoryteller who loves branding and social media.\u201d',li:'linkedin.com/in/siraulo',ig:'@SirAulo',fb:'facebook.com/SirAulo',tel:'+63 900 000 0007',connected:true,at:7,note:{where:'Inter-school summit',when:today(),extra:'Offered to review our pitch deck.'}},
+  Sir:{name:'Mingyu',init:'M',role:'Communication',sc:'ATENEO',bio:'\u201cStoryteller who loves branding and social media.\u201d',li:'linkedin.com/in/mingyu',ig:'@Mingyu',fb:'facebook.com/Mingyu',tel:'+63 900 000 0007',connected:true,at:7,note:{where:'Inter-school summit',when:today(),extra:'Offered to review our pitch deck.'}},
   Bogart:{name:'Bogart Smith',init:'BS',role:'Computer Science',sc:'UP',bio:'\u201cInto software, open source, and hackathons.\u201d',li:'linkedin.com/in/bogartsmith',ig:'@AnongBSToh',fb:'facebook.com/bogartsmith',tel:'+63 900 000 0009',connected:true,at:9,note:{where:'Hackathon',when:today(),extra:'Could help with the web app.'}}
 }};
 var people=seed(),current='Bob',viewed=false;
@@ -216,6 +221,9 @@ function openProfile(id){
   var sc=SCHOOLS[p.sc];$('p-uni').textContent=sc.emoji+' '+sc.full;
   $('p-bio').textContent=p.bio;
   $('p-li').textContent=p.li;$('p-ig').textContent=p.ig;$('p-fb').textContent=p.fb;
+  $('a-li').href=LOGIN.li;
+  $('a-ig').href=LOGIN.ig;
+  $('a-fb').href=LOGIN.fb;
   $('p-tel').textContent=p.tel;
   $('p-call').setAttribute('href','tel:'+p.tel.replace(/\s/g,''));
   $('p-succ').textContent='You can now find '+p.name.split(' ')[0]+' in your connections.';
